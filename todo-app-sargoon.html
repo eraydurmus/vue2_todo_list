@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js" ></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+</head>
+<body>
+        <div id="todoapp">
+          <div class="container">
+          <div class="header">
+            <center><h2>To-Do List</h2></center>
+        </div>
+
+        <form @submit.prevent="addTodo">
+            <div class="input-todo-app">
+              <input type="text" class="form-control" placeholder="Write something to do" v-model="newTodo">
+                <button class="btn blue right" type="submit">Add Something To Do</button>
+            </div>
+          </form>
+
+          <ul class="list-todo">
+          <li class="list-todo-item" v-for="todo, index in todos" :key="{'is-completed': todo.completed }">
+
+            <div class="todo-container"> 
+              <span class="todo-title"> {{ todo.title }} </span>
+
+              <div class="actions-todo-list">
+                  <button @click="todo.completed=true" class="btn green" v-if="!todo.completed">Done</button>
+                  <button @click="deleteTodo(index)" class="btn red">Remove</button>
+                  </div>
+                    </div>
+                      </li>
+                        </ul>
+                          </div>
+                            </div>
+                              </body>
+  
+<style>
+
+.container { 
+max-width: 800px;
+margin: auto;
+}
+
+</style>
+
+<script>
+
+new Vue({
+  el: '#todoapp',
+  components: todoapp,
+  data: function data() {
+    return {
+      newTodo: '', 
+      todos: [] 
+    };
+  },
+
+  computed: {
+    completed: function completed() { 
+      return this.todos.todo;
+    }
+  },
+
+  methods: {
+    addTodo: function addTodo() {
+
+    mutations:
+      this.todos.push({
+        title: this.newTodo,
+        completed: false,
+      });
+
+      this.newTodo = '';
+    },
+
+    deleteTodo: function deleteTodo(index) {
+      this.todos.splice(index, 1);
+    }
+  }
+});
+
+</script>
+
+</body>
